@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Türkiye Yol Bulmaca</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Turf.js - Geo hesaplamalar için -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+</head>
+<body>
+
+<h1>Türkiye Yol Bulmaca</h1>
+
+<div class="game-info">
+    <span>Skor: <strong id="score">0</strong></span>
+    <span>Süre: <strong id="timer">60</strong>s</span>
+    <span>Can: <strong id="lives">❤️❤️❤️</strong></span>
+</div>
+
+<div id="map"></div>
+
+<div class="buttons">
+    <button id="startBtn">Başla</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
