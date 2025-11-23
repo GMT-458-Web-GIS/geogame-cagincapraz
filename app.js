@@ -42,9 +42,9 @@ function startTimer() {
     }, 1000);
 }
 
-function gameOver(message) {
+function gameOver(msg) {
     clearInterval(gameInterval);
-    alert(message);
+    alert(msg);
 }
 
 function initMap() {
@@ -64,6 +64,13 @@ function initMap() {
                     weight: 1,
                     fillColor: "#ddd",
                     fillOpacity: 0.6
+                },
+                onEachFeature: function (feature, layer) {
+                    layer.on("click", function () {
+                        let clicked = feature.properties.name;
+                        console.log("Tıklanan il:", clicked);
+                        // ✔ Bir sonraki aşamada burada doğru/yanlış kontrolü yapacağız
+                    });
                 }
             }).addTo(map);
         });
@@ -74,26 +81,21 @@ function pickRandomProvinces() {
     startProvince = features[Math.floor(Math.random() * features.length)];
     targetProvince = features[Math.floor(Math.random() * features.length)];
 
-    if (startProvince === targetProvince)
-        pickRandomProvinces(); // farklı olmazsa tekrar seç
+    if (startProvince === targetProvince) {
+        pickRandomProvinces(); // Aynı gelirse yeniden seç
+        return;
+    }
 
-    console.log("Başlangıç:", startProvince.properties.name);
-    console.log("Hedef:", targetProvince.properties.name);
+    console.log("BAŞLANGIÇ:", startProvince.properties.name);
+    console.log("HEDEF:", targetProvince.properties.name);
 }
 
 function colorProvinces() {
-    provincesLayer.setStyle(feature => {
-        if (feature === startProvince)
-            return { color: "green", fillColor: "lightgreen" };
-        if (feature === targetProvince)
-            return { color: "red", fillColor: "pink" };
+    provincesLayer.setStyle(f => {
+        if (f === startProvince)
+            return { color: "green", fillColor: "#90ee90" };
+        if (f === targetProvince)
+            return { color: "red", fillColor: "#ffcccc" };
         return { color: "#444", fillColor: "#ddd" };
     });
-
-    // Marker ekle
-    const startCenter = turf.center(startProvince).geometry.coordinates.reverse();
-    const targetCenter = turf.center(targetProvince).geometry.coordinates.reverse();
-
-    L.marker(startCenter).addTo(map).bindPopup("Başlangıç İl: " + startProvince.properties.name);
-    L.marker(targetCenter).addTo(map).bindPopup("Hedef İl: " + targetProvince.properties.name);
 }
