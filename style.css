@@ -1,45 +1,128 @@
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f0f0f0;
-}
-
-h1 {
-    background: #c62828;
-    color: white;
-    padding: 10px;
     margin: 0;
-}
-
-.game-info {
-    background: white;
-    padding: 10px;
-    font-size: 18px;
+    padding: 0;
+    background-color: #f4f4f9;
     display: flex;
-    justify-content: space-around;
-    border-bottom: 2px solid #ddd;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-#map {
-    width: 100%;
-    height: 85vh;
+#game-container {
+    width: 95%;
+    max-width: 1200px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.buttons {
-    margin: 10px;
-}
-
-button {
+/* 1. ÜST ÇUBUK STİLİ */
+#score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
-    background: #1565c0;
+    background-color: #3f51b5;
     color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-button:hover {
-    background: #0d47a1;
+#title {
+    font-size: 1.4em;
+}
+
+/* 2. HARİTA ALANI STİLİ */
+#map {
+    height: 600px;
+    width: 100%;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+/* 3. KONTROL ALANI STİLİ */
+#control-panel {
+    padding: 15px 20px;
+    text-align: center;
+    background-color: #e8eaf6;
+}
+
+#input-area {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#province-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60%;
+    max-width: 300px;
+}
+
+#submit-btn, #start-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#start-btn {
+    background-color: #4caf50;
+    color: white;
+    margin-top: 10px;
+}
+
+#submit-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+#feedback-message {
+    min-height: 20px;
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* =========================================== */
+/* HARİTA RENK KODLARI (Leaflet Sınıfları) */
+/* =========================================== */
+
+/* province-default: Rotada, henüz bulunmamış iller (KIRMIZI) */
+.province-default {
+    fillColor: #FF4136; /* Kırmızı */
+    color: #990000;      /* Koyu Kırmızı Kenarlık */
+    weight: 1;
+    opacity: 1;
+    fillOpacity: 0.7;
+}
+
+/* province-target: Başlangıç ve Bitiş illeri (MAVİ) */
+.province-target {
+    fillColor: #0074D9; /* Parlak Mavi */
+    color: #004488;      /* Koyu Mavi Kenarlık */
+    weight: 2;
+    fillOpacity: 0.8;
+}
+
+/* province-found: Doğru bulunan iller (Yeşil) */
+.province-found {
+    fillColor: #2ECC40; /* Yeşil */
+    color: #009900;
+    weight: 2;
+}
+
+/* İl adlarının harita üzerinde kalıcı görünmesi için CSS */
+.province-name-label {
+    font-weight: bold;
+    color: black;
+    text-shadow: 1px 1px 2px white; /* Harita üzerinde daha belirgin olması için */
+    font-size: 14px;
+    pointer-events: none; /* Etikete tıklamayı engeller, il sınırına tıklanabilir kalır */
 }

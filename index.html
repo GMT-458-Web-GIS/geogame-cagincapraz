@@ -2,36 +2,49 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Türkiye Yol Bulmaca</title>
-
-    <!-- CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İller Arası Coğrafya Oyunu</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
     <link rel="stylesheet" href="style.css">
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Turf.js - Geo hesaplamalar için -->
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    
 </head>
 <body>
 
-<h1>Türkiye Yol Bulmaca</h1>
+    <audio id="background-music" loop>
+        <source src="sound/01. Age of War - Theme Song.mp3" type="audio/mpeg">
+        Tarayıcınız ses öğesini desteklemiyor.
+    </audio>
+    <div id="game-container">
+        
+        <header id="score-board">
+            <div id="timer">SÜRE: 60</div>
+            <div id="title">İLLER ARASI BULMACA</div>
+            <div id="stats">
+                <span id="score">SKOR: 0</span> | 
+                <span id="lives">CAN: ❤️❤️❤️</span>
+            </div>
+        </header>
 
-<div class="game-info">
-    <span>Skor: <strong id="score">0</strong></span>
-    <span>Süre: <strong id="timer">60</strong>s</span>
-    <span>Can: <strong id="lives">❤️❤️❤️</strong></span>
-</div>
+        <div id="map"></div>
 
-<div id="map"></div>
+        <footer id="control-panel">
+            <p id="instruction-text">Oyuna başlamak için "Başla" butonuna tıklayın.</p>
+            <div id="input-area">
+                <input type="text" id="province-input" placeholder="Tıkladığınız ilin adını girin..." disabled>
+                <button id="submit-btn" disabled>Onayla</button>
+            </div>
+            <button id="start-btn">OYUNA BAŞLA</button>
+            <p id="feedback-message"></p>
+        </footer>
 
-<div class="buttons">
-    <button id="startBtn">Başla</button>
-</div>
+    </div>
 
-<script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
